@@ -2,9 +2,7 @@
 
 ## Estrutura Atual
 
-<div align="center">
-  <img src="https://github.com/CarlosBarbosaFilho/structure-app-mvc/issues/1#issue-1700979438" />
-</div>
+<img width="260" alt="Captura de Tela 2023-05-08 às 18 46 03" src="https://user-images.githubusercontent.com/2454085/236943195-c2b9431c-3502-41a5-9eac-b62a511966fa.png">
 
 
 ## Bibliotecas Necessárias - Comando de Instalação
