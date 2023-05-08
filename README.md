@@ -1,5 +1,12 @@
 # structure-app-mvc
 
+## Estrutura Atual
+
+<div align="center">
+  <img src="https://github.com/CarlosBarbosaFilho/structure-app-mvc/issues/1#issue-1700979438" />
+</div>
+
+
 ## Bibliotecas Necessárias - Comando de Instalação
 
 JWT - https://github.com/golang-jwt/jwt
