@@ -20,6 +20,9 @@ Compile Daemon - https://github.com/githubnemo/CompileDaemon
 - go get github.com/githubnemo/CompileDaemon
 - To compile my app command : ./CompileDaemon —command=“./myproject”
 
+OBS.: O compile Daemon irá manter o servidor ativo durante o seu processo de codificação, assim suas mudanças no código serão refletidas em tempo real, sem haver a necessidade de derrubar o servidor sempre que quisermos observar 
+alguma alteração realizada.
+
 Gin Framework - https://github.com/gin-gonic/gin
 - go get -u github.com/gin-gonic/gin
 
