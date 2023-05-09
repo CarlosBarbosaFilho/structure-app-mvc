@@ -7,7 +7,7 @@ import (
 )
 
 func configureRoutes(router *gin.Engine) {
-
+	//logger := config.NewLogger("Logging - Routes Configuration")
 	v1 := router.Group("/api/v1")
 	{
 		v1.GET("/home", func(ctx *gin.Context) {

@@ -11,6 +11,6 @@ var (
 )
 
 func InitializerLogger() {
-	fmt.Println("Inicializer Logger")
+	fmt.Println("Inicializer Logger Application")
 	logger = config.GetLogger("Initializer loggers")
 }
