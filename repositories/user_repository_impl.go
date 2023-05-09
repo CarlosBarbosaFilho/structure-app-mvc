@@ -2,6 +2,7 @@ package repositories
 
 import (
 	"github.com/CarlosBarbosaGomes/structure-app-mvc/config"
+	"github.com/CarlosBarbosaGomes/structure-app-mvc/helpers"
 	"github.com/CarlosBarbosaGomes/structure-app-mvc/models"
 	"gorm.io/gorm"
 )
@@ -20,16 +21,18 @@ func loggerMethods() *config.Logger {
 }
 
 // CreateUser implements IUserRepository
-func (repo *UserRepositoryImpl) CreateUser(user models.UserModel) {
+func (repo *UserRepositoryImpl) CreateUser(user models.Users) {
 	result := repo.DB.Create(&user)
-	if result != nil {
-		loggerMethods().Error("Error to create a new user")
+	if result == nil {
+		loggerMethods().Errorf("Error to create a new user %v", result.Error)
+		helpers.ErrorPanic(result.Error)
+		return
 	}
 }
 
 // DeleteUser implements IUserRepository
 func (repo *UserRepositoryImpl) DeleteUser(id uint) {
-	var user models.UserModel
+	var user models.Users
 	result := repo.DB.Delete(&user, id)
 	if result != nil {
 		loggerMethods().Errorf("Error to delete user with id %v", id)
@@ -38,8 +41,8 @@ func (repo *UserRepositoryImpl) DeleteUser(id uint) {
 }
 
 // GetUserById implements IUserRepository
-func (repo *UserRepositoryImpl) GetUserById(id uint) models.UserModel {
-	var user models.UserModel
+func (repo *UserRepositoryImpl) GetUserById(id uint) models.Users {
+	var user models.Users
 	result := repo.DB.Find(&user, id)
 	if result != nil {
 		loggerMethods().Errorf("Error to find user with id %v", id)
@@ -48,9 +51,9 @@ func (repo *UserRepositoryImpl) GetUserById(id uint) models.UserModel {
 }
 
 // ListUsers implements IUserRepository
-func (repo *UserRepositoryImpl) ListUsers() []models.UserModel {
-	var users []models.UserModel
-	result := repo.DB.Select([]models.UserModel{}).Find(&users)
+func (repo *UserRepositoryImpl) ListUsers() []models.Users {
+	var users []models.Users
+	result := repo.DB.Select([]models.Users{}).Find(&users)
 	if result != nil {
 		loggerMethods().Error("Error to list all users")
 	}
@@ -58,8 +61,8 @@ func (repo *UserRepositoryImpl) ListUsers() []models.UserModel {
 }
 
 // UpdateUser implements IUserRepository
-func (repo *UserRepositoryImpl) UpdateUser(user models.UserModel) {
-	var userEdit = models.UserModel{
+func (repo *UserRepositoryImpl) UpdateUser(user models.Users) {
+	var userEdit = models.Users{
 		Model: gorm.Model{
 			ID:        user.ID,
 			CreatedAt: user.CreatedAt,

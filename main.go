@@ -19,7 +19,5 @@ func init() {
 }
 
 func main() {
-
 	fmt.Println("My structure to mvc project in golang")
-
 }

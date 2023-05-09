@@ -1,9 +1,6 @@
-package models
+package request
 
-import "gorm.io/gorm"
-
-type Users struct {
-	gorm.Model
+type UserRequest struct {
 	Name     string `json:"name"`
 	Email    string `json:"email"`
 	Password string `json:"password"`
