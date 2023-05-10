@@ -77,11 +77,6 @@ paths:
     put:
       description: Resource to update infos users
       parameters:
-      - description: update user by id
-        in: path
-        name: id
-        required: true
-        type: string
       - description: Update User
         in: body
         name: user

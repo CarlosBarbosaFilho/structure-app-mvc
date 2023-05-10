@@ -105,7 +105,6 @@ func (controller *UserController) DeleteUser(ctx *gin.Context) {
 // @Tags			Users
 // Update User	   	godoc
 // @Summary 		Update user
-// @Param			id path string true "update user by id"
 // @Description 	Resource to update infos users
 // @Param			user body request.UserRequestUpdate{} true "Update User"
 // @Produce			application/json
@@ -117,10 +116,10 @@ func (controller *UserController) UpdateUser(ctx *gin.Context) {
 	err := ctx.ShouldBindJSON(&requestBody)
 	helpers.ErrorPanic(err)
 
-	idUser := ctx.Param("id")
-	id, err := strconv.Atoi(idUser)
+	//idUser := ctx.Param("id")
+	//id, err := strconv.Atoi(requestBody.ID)
 	helpers.ErrorPanic(err)
-	requestBody.ID = uint(id)
+	requestBody.ID = uint(requestBody.ID)
 
 	controller.Service.UpdateUser(requestBody)
 	ctx.Header("Content-Type", "application/json")

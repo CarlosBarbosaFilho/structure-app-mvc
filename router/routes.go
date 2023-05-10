@@ -17,7 +17,7 @@ func routerUserController(controller *controllers.UserController) *gin.Engine {
 	usersRouter.GET("", controller.List)
 	usersRouter.GET("/:id", controller.GetUser)
 	usersRouter.DELETE("/:id", controller.DeleteUser)
-	usersRouter.PUT("/:id", controller.UpdateUser)
+	usersRouter.PUT("", controller.UpdateUser)
 
 	return router
 
