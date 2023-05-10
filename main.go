@@ -18,6 +18,21 @@ func init() {
 	router.Initialize()
 }
 
+// @title Demo API - Structure MVC
+// @version 1.0
+// @description Doc Swagger APIs.
+// @termsOfService http://swagger.io/terms/
+// @contact.name API Support
+// @contact.url http://www.swagger.io/support
+// @contact.email support@swagger.io
+// @securityDefinitions.apiKey JWT
+// @in header
+// @name token
+// @license.name Apache 2.0
+// @license.url http://www.apache.org/licenses/LICENSE-2.0.html
+// @host localhost:8888
+// @BasePath /api/v1
+// @schemes http
 func main() {
 	fmt.Println("My structure to mvc project in golang")
 }

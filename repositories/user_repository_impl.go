@@ -34,9 +34,7 @@ func (repo *UserRepositoryImpl) CreateUser(user models.Users) {
 func (repo *UserRepositoryImpl) DeleteUser(id uint) {
 	var user models.Users
 	result := repo.DB.Delete(&user, id)
-	if result != nil {
-		loggerMethods().Errorf("Error to delete user with id %v", id)
-	}
+	helpers.ErrorPanic(result.Error)
 
 }
 
@@ -44,19 +42,15 @@ func (repo *UserRepositoryImpl) DeleteUser(id uint) {
 func (repo *UserRepositoryImpl) GetUserById(id uint) models.Users {
 	var user models.Users
 	result := repo.DB.Find(&user, id)
-	if result != nil {
-		loggerMethods().Errorf("Error to find user with id %v", id)
-	}
+	helpers.ErrorPanic(result.Error)
 	return user
 }
 
 // ListUsers implements IUserRepository
 func (repo *UserRepositoryImpl) ListUsers() []models.Users {
 	var users []models.Users
-	result := repo.DB.Select([]models.Users{}).Find(&users)
-	if result != nil {
-		loggerMethods().Error("Error to list all users")
-	}
+	result := repo.DB.Find(&users)
+	helpers.ErrorPanic(result.Error)
 	return users
 }
 
@@ -74,8 +68,6 @@ func (repo *UserRepositoryImpl) UpdateUser(user models.Users) {
 		Password: user.Password,
 	}
 	result := repo.DB.Model(&user).Updates(userEdit)
-	if result != nil {
-		loggerMethods().Error("Error to find user")
-	}
+	helpers.ErrorPanic(result.Error)
 
 }

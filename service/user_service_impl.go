@@ -1,6 +1,8 @@
 package service
 
 import (
+	"time"
+
 	"github.com/CarlosBarbosaGomes/structure-app-mvc/config"
 	"github.com/CarlosBarbosaGomes/structure-app-mvc/helpers"
 	"github.com/CarlosBarbosaGomes/structure-app-mvc/models"
@@ -41,21 +43,54 @@ func (service *UserServiceImpl) CreateUser(user request.UserRequest) {
 }
 
 // DeleteUser implements UserService
-func (*UserServiceImpl) DeleteUser(id uint) {
-	panic("unimplemented")
+func (service *UserServiceImpl) DeleteUser(id uint) {
+	service.IUserRepository.DeleteUser(id)
 }
 
 // GetUserById implements UserService
-func (*UserServiceImpl) GetUserById(id uint) response.UserResponse {
-	panic("unimplemented")
+func (service *UserServiceImpl) GetUserById(id uint) response.UserResponse {
+	result := service.IUserRepository.GetUserById(id)
+	if result.ID == 0 {
+		loggerMethods().Infof("User with id %v not found", id)
+	}
+	response := response.UserResponse{
+		ID:       result.ID,
+		Name:     result.Name,
+		Email:    result.Email,
+		CreateAt: result.CreatedAt,
+		UpdateAt: result.UpdatedAt,
+	}
+
+	return response
 }
 
 // ListUsers implements UserService
-func (*UserServiceImpl) ListUsers() []response.UserResponse {
-	panic("unimplemented")
+func (service *UserServiceImpl) ListUsers() []response.UserResponse {
+	results := service.IUserRepository.ListUsers()
+
+	var users []response.UserResponse
+
+	for _, value := range results {
+		user := response.UserResponse{
+			ID:       value.ID,
+			Name:     value.Name,
+			Email:    value.Email,
+			CreateAt: value.CreatedAt,
+			UpdateAt: value.CreatedAt,
+		}
+		users = append(users, user)
+	}
+	return users
 }
 
 // UpdateUser implements UserService
-func (*UserServiceImpl) UpdateUser(request request.UserRequest) {
-	panic("unimplemented")
+func (service *UserServiceImpl) UpdateUser(user request.UserRequestUpdate) {
+	result := service.IUserRepository.GetUserById(user.ID)
+
+	result.Name = user.Name
+	result.Email = user.Email
+	result.Password = user.Password
+	result.UpdatedAt = time.Now()
+
+	service.IUserRepository.UpdateUser(result)
 }

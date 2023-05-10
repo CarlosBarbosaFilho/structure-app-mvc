@@ -1,0 +1,139 @@
+definitions:
+  request.UserRequest:
+    properties:
+      email:
+        type: string
+      name:
+        type: string
+      password:
+        type: string
+    type: object
+  request.UserRequestUpdate:
+    properties:
+      email:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+      password:
+        type: string
+    type: object
+  response.UserResponse:
+    properties:
+      createAt:
+        type: string
+      email:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+      updateAt:
+        type: string
+    type: object
+info:
+  contact:
+    email: support@swagger.io
+    name: API Support
+    url: http://www.swagger.io/support
+  description: Doc Swagger APIs.
+  termsOfService: http://swagger.io/terms/
+  title: Demo API - Structure MVC
+  version: "1.0"
+paths:
+  /users:
+    get:
+      description: Resource to list all users
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.UserResponse'
+      summary: List all users
+      tags:
+      - Users
+    post:
+      description: Resource to save user and your credentials
+      parameters:
+      - description: Create User
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/request.UserRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/response.UserResponse'
+      summary: Create users
+      tags:
+      - Users
+    put:
+      description: Resource to update infos users
+      parameters:
+      - description: update user by id
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Update User
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/request.UserRequestUpdate'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      summary: Update user
+      tags:
+      - Users
+  /users/{id}:
+    delete:
+      description: Resource to remove user by id
+      parameters:
+      - description: delete user
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+      summary: Delete user by id
+      tags:
+      - Users
+    get:
+      description: Resource to return user by id
+      parameters:
+      - description: get user
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.UserResponse'
+      summary: Return user by id
+      tags:
+      - Users
+securityDefinitions:
+  JWT:
+    in: header
+    name: token
+    type: apiKey
+swagger: "2.0"

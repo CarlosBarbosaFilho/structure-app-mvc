@@ -10,5 +10,5 @@ type UserService interface {
 	ListUsers() []response.UserResponse
 	DeleteUser(id uint)
 	GetUserById(id uint) response.UserResponse
-	UpdateUser(request request.UserRequest)
+	UpdateUser(request request.UserRequestUpdate)
 }

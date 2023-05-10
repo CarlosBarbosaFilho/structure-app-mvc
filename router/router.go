@@ -17,10 +17,12 @@ func Initialize() {
 func initializerControllers() *gin.Engine {
 	databse := database.DB
 	validate := validator.New()
+
 	//Configuration user controllers routes
 	repository := repositories.NewUserRepositoryImpl(databse)
 	service := service.NewUserServiceImpl(repository, validate)
 	controller := controllers.NewUserController(service)
 	router := routerUserController(controller)
+
 	return router
 }

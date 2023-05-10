@@ -34,8 +34,12 @@ Gin Framework - https://github.com/gin-gonic/gin
 Crypto - 
 - go get -u golang.org/x/crypto/bcrypt
 
-docker inspect postgres
+Validator
+- go get github.com/go-playground/validator/v10
 
+Swagger - https://github.com/swaggo/gin-swagger
+- go get -u github.com/swaggo/gin-swagger
+- go get -u github.com/swaggo/files
 
 ## Documentações 
 
