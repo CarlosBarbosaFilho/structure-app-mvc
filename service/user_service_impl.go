@@ -4,11 +4,11 @@ import (
 	"time"
 
 	"github.com/CarlosBarbosaGomes/structure-app-mvc/config"
+	"github.com/CarlosBarbosaGomes/structure-app-mvc/controllers/request"
+	"github.com/CarlosBarbosaGomes/structure-app-mvc/controllers/response"
 	"github.com/CarlosBarbosaGomes/structure-app-mvc/helpers"
 	"github.com/CarlosBarbosaGomes/structure-app-mvc/models"
 	"github.com/CarlosBarbosaGomes/structure-app-mvc/repositories"
-	"github.com/CarlosBarbosaGomes/structure-app-mvc/request"
-	"github.com/CarlosBarbosaGomes/structure-app-mvc/response"
 	"github.com/go-playground/validator/v10"
 	"golang.org/x/crypto/bcrypt"
 )

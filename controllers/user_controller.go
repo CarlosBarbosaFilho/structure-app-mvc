@@ -5,8 +5,8 @@ import (
 	"strconv"
 
 	"github.com/CarlosBarbosaGomes/structure-app-mvc/config"
+	"github.com/CarlosBarbosaGomes/structure-app-mvc/controllers/request"
 	"github.com/CarlosBarbosaGomes/structure-app-mvc/helpers"
-	"github.com/CarlosBarbosaGomes/structure-app-mvc/request"
 	"github.com/CarlosBarbosaGomes/structure-app-mvc/service"
 	"github.com/gin-gonic/gin"
 )

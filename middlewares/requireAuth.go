@@ -6,8 +6,8 @@ import (
 	"os"
 	"time"
 
+	"github.com/CarlosBarbosaGomes/structure-app-mvc/controllers/response"
 	"github.com/CarlosBarbosaGomes/structure-app-mvc/initializer/database"
-	"github.com/CarlosBarbosaGomes/structure-app-mvc/response"
 	"github.com/gin-gonic/gin"
 	"github.com/golang-jwt/jwt"
 )
@@ -43,7 +43,7 @@ func RequireAtuthentication(ctx *gin.Context) {
 		if user.ID == 0 {
 			ctx.AbortWithStatus(http.StatusUnauthorized)
 		}
-		//Attach to request
+		//Attach to request on context
 		ctx.Set("user", user)
 
 		//Continue

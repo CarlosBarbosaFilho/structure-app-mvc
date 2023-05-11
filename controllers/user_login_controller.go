@@ -5,7 +5,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/CarlosBarbosaGomes/structure-app-mvc/request"
+	"github.com/CarlosBarbosaGomes/structure-app-mvc/controllers/request"
 	"github.com/CarlosBarbosaGomes/structure-app-mvc/service"
 	"github.com/gin-gonic/gin"
 	"github.com/golang-jwt/jwt/v4"

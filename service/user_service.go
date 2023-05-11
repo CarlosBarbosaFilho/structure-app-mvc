@@ -1,8 +1,8 @@
 package service
 
 import (
-	"github.com/CarlosBarbosaGomes/structure-app-mvc/request"
-	"github.com/CarlosBarbosaGomes/structure-app-mvc/response"
+	"github.com/CarlosBarbosaGomes/structure-app-mvc/controllers/request"
+	"github.com/CarlosBarbosaGomes/structure-app-mvc/controllers/response"
 )
 
 type UserService interface {
