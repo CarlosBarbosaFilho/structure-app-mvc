@@ -11,4 +11,5 @@ type UserService interface {
 	DeleteUser(id uint)
 	GetUserById(id uint) response.UserResponse
 	UpdateUser(request request.UserRequestUpdate)
+	GetUserByEmail(email string) response.UserResponseLogin
 }

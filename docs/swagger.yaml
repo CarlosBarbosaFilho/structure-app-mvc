@@ -8,6 +8,13 @@ definitions:
       password:
         type: string
     type: object
+  request.UserRequestLogin:
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+    type: object
   request.UserRequestUpdate:
     properties:
       email:
@@ -42,6 +49,22 @@ info:
   title: Demo API - Structure MVC
   version: "1.0"
 paths:
+  /login:
+    post:
+      description: Resource to login user
+      parameters:
+      - description: Login User
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/request.UserRequestLogin'
+      produces:
+      - application/json
+      responses: {}
+      summary: Login user
+      tags:
+      - Login
   /users:
     get:
       description: Resource to list all users
@@ -126,6 +149,17 @@ paths:
       summary: Return user by id
       tags:
       - Users
+  /validate:
+    get:
+      description: Resource Checks user is valid
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      summary: Checks validate user
+      tags:
+      - Checks if user is valid
 securityDefinitions:
   JWT:
     in: header

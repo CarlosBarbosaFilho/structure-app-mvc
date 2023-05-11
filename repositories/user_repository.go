@@ -8,4 +8,5 @@ type IUserRepository interface {
 	DeleteUser(id uint)
 	GetUserById(id uint) models.Users
 	UpdateUser(user models.Users)
+	GetUserByEmail(email string) models.Users
 }

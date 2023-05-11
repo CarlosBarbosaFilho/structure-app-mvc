@@ -10,6 +10,7 @@ import (
 	"github.com/CarlosBarbosaGomes/structure-app-mvc/request"
 	"github.com/CarlosBarbosaGomes/structure-app-mvc/response"
 	"github.com/go-playground/validator/v10"
+	"golang.org/x/crypto/bcrypt"
 )
 
 type UserServiceImpl struct {
@@ -32,10 +33,15 @@ func (service *UserServiceImpl) CreateUser(user request.UserRequest) {
 	err := service.Validate.Struct(user)
 	helpers.ErrorPanic(err)
 
+	hash, err := bcrypt.GenerateFromPassword([]byte(user.Password), 10)
+	if err != nil {
+		panic(err.Error())
+	}
+
 	userSave := models.Users{
 		Name:     user.Name,
 		Email:    user.Email,
-		Password: user.Password,
+		Password: string(hash),
 	}
 
 	service.IUserRepository.CreateUser(userSave)
@@ -59,6 +65,22 @@ func (service *UserServiceImpl) GetUserById(id uint) response.UserResponse {
 		Email:    result.Email,
 		CreateAt: result.CreatedAt,
 		UpdateAt: result.UpdatedAt,
+	}
+
+	return response
+}
+
+// GetUserByEmail implements UserService
+func (service *UserServiceImpl) GetUserByEmail(email string) response.UserResponseLogin {
+	result := service.IUserRepository.GetUserByEmail(email)
+	if result.ID == 0 {
+		loggerMethods().Infof("User with e-mail %v not found", email)
+	}
+	response := response.UserResponseLogin{
+		ID:       result.ID,
+		Name:     result.Name,
+		Email:    result.Email,
+		Password: result.Password,
 	}
 
 	return response

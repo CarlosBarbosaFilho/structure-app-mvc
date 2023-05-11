@@ -125,3 +125,14 @@ func (controller *UserController) UpdateUser(ctx *gin.Context) {
 	ctx.Header("Content-Type", "application/json")
 	ctx.JSON(http.StatusOK, gin.H{"message": "User updated with success"})
 }
+
+// @Tags			Checks if user is valid
+// Update User	   	godoc
+// @Summary 		Checks validate user
+// @Description 	Resource Checks user is valid
+// @Produce			application/json
+// @Success			200
+// @Router			/validate [get]
+func (controller *UserController) Validate(ctx *gin.Context) {
+	ctx.JSON(http.StatusOK, gin.H{"message": "User is logger with success"})
+}

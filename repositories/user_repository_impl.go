@@ -46,6 +46,15 @@ func (repo *UserRepositoryImpl) GetUserById(id uint) models.Users {
 	return user
 }
 
+// GetUserByEmail implements IUserRepository
+func (repo *UserRepositoryImpl) GetUserByEmail(email string) models.Users {
+	var user models.Users
+	result := repo.DB.Where("email = ?", email).First(&user)
+
+	helpers.ErrorPanic(result.Error)
+	return user
+}
+
 // ListUsers implements IUserRepository
 func (repo *UserRepositoryImpl) ListUsers() []models.Users {
 	var users []models.Users
